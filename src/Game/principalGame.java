@@ -16,8 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 public class principalGame extends Application {
 
@@ -52,13 +51,35 @@ public class principalGame extends Application {
     @FXML
     private Button btnExitToWindow;
 
+    private List<Terrain> terrains;
+
+    public List<Terrain> getTerrains() {
+        return terrains;
+    }
+
+    public void addTerrain(Terrain terrain) {
+        terrains.add(terrain);
+    }
+
+    public Terrain getTerrainById(int id) {
+        for (Terrain terrain : terrains) {
+            if (terrain.getIdTerrain() == id) {
+                return terrain;
+            }
+        }
+        return null;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../FXML/InterfaceGame.fxml")));
         loader.setController(this);
         Parent root = loader.load();
 
-        Ressource.setMoney(5000);
+        terrains = new ArrayList<>();
+        terrains.add(new TerrainLibre());
+        terrains.add(new TerrainUser());
+
         updateLabels();
 
         TerrainLibre[] terrainsLibres = {
@@ -81,6 +102,29 @@ public class principalGame extends Application {
             }
         });
 
+        imageViewShopSell.setOnMouseClicked(mouseEvent -> {
+            try {
+                new shopSell(this).start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        btnSaveGame.setOnMouseClicked(mouseEvent -> {
+            gameSaveLoad.saveGame(
+                    terrains,
+                    Ressource.getMoney(),
+                    Ressource.getWheat(),
+                    Ressource.getCarrot(),
+                    Ressource.getPotatoes(),
+                    Production.getWheatSeed(),
+                    Production.getCarrotSeed(),
+                    Production.getPotatoesSeed()
+            );
+        });
+
+
+
         for (ImageView imageView : imageViews) {
             imageView.setImage(new Image("./Image/champSell.png"));
         }
@@ -97,7 +141,7 @@ public class principalGame extends Application {
         btnExitToMenu.setOnAction(event -> {
             primaryStage.close();
             try {
-                new Menu.Menu().start(new Stage());
+                new Menu().start(new Stage());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -157,26 +201,47 @@ public class principalGame extends Application {
             String selectedText = chooseTerrainActivity.getValue();
             String[] imagePaths = new String[3];
 
+            boolean hasSeeds = false;
+
             switch (selectedText) {
                 case "Carrote":
-                    imagePaths = new String[]{"/Image/champCarrote.png", "/Image/champCarrote2.png", "/Image/champCarrote3.png"};
-                    terrain.setTypeTerrain("Carrote");
+                    if (Production.getCarrotSeed() > 0) {
+                        Production.setCarrotSeed(Production.getCarrotSeed() - 1);
+                        hasSeeds = true;
+                        imagePaths = new String[]{"/Image/champCarrote.png", "/Image/champCarrote2.png", "/Image/champCarrote3.png"};
+                        terrain.setTypeTerrain("Carrote");
+                    }
                     break;
                 case "Pomme de terre":
-                    imagePaths = new String[]{"/Image/champPotatoes.png", "/Image/champPotatoes2.png", "/Image/champPotatoes3.png"};
-                    terrain.setTypeTerrain("Pomme de terre");
+                    if (Production.getPotatoesSeed() > 0) {
+                        Production.setPotatoesSeed(Production.getPotatoesSeed() - 1);
+                        hasSeeds = true;
+                        imagePaths = new String[]{"/Image/champPotatoes.png", "/Image/champPotatoes2.png", "/Image/champPotatoes3.png"};
+                        terrain.setTypeTerrain("Pomme de terre");
+                    }
                     break;
                 case "Blé":
-                    imagePaths = new String[]{"/Image/champBle.png", "/Image/champBle2.png", "/Image/champBle3.png"};
-                    terrain.setTypeTerrain("Blé");
+                    if (Production.getWheatSeed() > 0) {
+                        Production.setWheatSeed(Production.getWheatSeed() - 1);
+                        hasSeeds = true;
+                        imagePaths = new String[]{"/Image/champBle.png", "/Image/champBle2.png", "/Image/champBle3.png"};
+                        terrain.setTypeTerrain("Blé");
+                    }
                     break;
             }
 
-            if (getClass().getResource(imagePaths[0]) != null) {
-                imageView.setImage(new Image(getClass().getResource(imagePaths[0]).toExternalForm()));
-                animateImages(imageView, imagePaths, terrain);
+            if (hasSeeds) {
+                // Planter la culture si on a des graines
+                if (getClass().getResource(imagePaths[0]) != null) {
+                    imageView.setImage(new Image(getClass().getResource(imagePaths[0]).toExternalForm()));
+                    animateImages(imageView, imagePaths, terrain);
+                } else {
+                    System.err.println("Image not found: " + imagePaths[0]);
+                }
+                updateLabels(); // 🔴 Met à jour les labels ici !
             } else {
-                System.err.println("Image not found: " + imagePaths[0]);
+                // Afficher un message d'erreur si on n'a pas de graines
+                showModalRessource("Aucune graine disponible", 0, "Vous n'avez plus de graines de " + selectedText + " !");
             }
 
             modalStage.close();
@@ -187,6 +252,8 @@ public class principalGame extends Application {
         modalStage.setScene(scene);
         modalStage.showAndWait();
     }
+
+
 
     private void animateImages(ImageView imageView, String[] imagePaths, Terrain terrain) {
         final int[] index = {0};
@@ -213,18 +280,21 @@ public class principalGame extends Application {
         int gain = generateRandomGain();
 
         switch (type) {
-            case " Blé ":
+            case "Blé":
                 Ressource.setWheat(Ressource.getWheat() + gain);
                 break;
-            case " Carrote ":
+            case "Carrote":
                 Ressource.setCarrot(Ressource.getCarrot() + gain);
                 break;
-            case " Pomme de terre ":
+            case "Pomme de terre":
                 Ressource.setPotatoes(Ressource.getPotatoes() + gain);
                 break;
+            default:
+                System.err.println("Type de terrain inconnu: " + type);
+                return;
         }
 
-        updateLabels();
+        updateLabels(); // 🔴 Met à jour les labels après la récolte
 
         showModalRessource("Récolte terminée", gain, type + " récolté!");
 
@@ -232,6 +302,7 @@ public class principalGame extends Application {
 
         imageView.setOnMouseClicked(e -> showModalSelectTerrain("Sélectionner un terrain", terrain, imageView));
     }
+
 
     private int generateRandomGain() {
         Random rand = new Random();

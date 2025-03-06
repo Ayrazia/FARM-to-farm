@@ -1,5 +1,4 @@
-package Menu;
-import Game.principalGame;
+package Game;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -10,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class Menu extends Application {
@@ -39,16 +39,41 @@ public class Menu extends Application {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                Ressource.setMoney(5000);
             });
-        });btnExit.setOnAction(event -> {
-            primaryStage.close();
         });
 
+        btnExit.setOnAction(event -> primaryStage.close());
 
+        // Charge le jeu à partir de la sauvegarde
+        btnLoadGame.setOnAction(event -> {
+            loadGame();
+        });
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    // La méthode loadGame qui charge les données et commence le jeu
+    private void loadGame() {
+        try {
+            // Appel à la méthode de chargement des données de jeu
+            gameSaveLoad.loadGame();
+
+            // Cette partie s'assure que l'ancienne scène est fermée et ouvre une nouvelle scène avec le jeu
+            Platform.runLater(() -> {
+                try {
+                    Stage currentStage = (Stage) btnLoadGame.getScene().getWindow();
+                    currentStage.close();
+                    new principalGame().start(new Stage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

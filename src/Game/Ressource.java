@@ -1,6 +1,8 @@
 package Game;
 
-public class Ressource {
+import java.io.Serializable;
+
+public class Ressource implements Serializable {
     private static int wheat;
     private static int carrot;
     private static int potatoes;

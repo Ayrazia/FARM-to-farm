@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="labelWheat" layoutX="39.0" layoutY="66.0" text="Blé" />
+      <HBox layoutX="196.0" layoutY="90.0" spacing="10">
+         <TextField fx:id="textFieldSellWheat" prefHeight="24.0" prefWidth="88.0" promptText="Quantité" />
+         <Button fx:id="btnMaxWheat" text="MAX" />
+      </HBox>
+      <Button fx:id="btnSellWheat" layoutX="371.0" layoutY="90.0" mnemonicParsing="false" text="Vendre" />
+      <Label fx:id="labelPriceWheat" layoutX="133.0" layoutY="94.0" text="Prix: " />
+      <Label fx:id="labelCarrot" layoutX="39.0" layoutY="176.0" text="Carotte" />
+      <HBox layoutX="196.0" layoutY="200.0" spacing="10">
+         <TextField fx:id="textFieldSellCarrot" prefHeight="24.0" prefWidth="88.0" promptText="Quantité" />
+         <Button fx:id="btnMaxCarrot" text="MAX" />
+      </HBox>
+      <Button fx:id="btnSellCarrot" layoutX="371.0" layoutY="200.0" mnemonicParsing="false" text="Vendre" />
+      <Label fx:id="labelPriceCarrot" layoutX="133.0" layoutY="204.0" text="Prix: " />
+      <Label fx:id="labelPotato" layoutX="39.0" layoutY="296.0" text="Pomme de terre" />
+      <HBox layoutX="198.0" layoutY="320.0" spacing="10">
+         <TextField fx:id="textFieldSellPotato" prefHeight="24.0" prefWidth="88.0" promptText="Quantité" />
+         <Button fx:id="btnMaxPotato" text="MAX" />
+      </HBox>
+      <Button fx:id="btnSellPotato" layoutX="371.0" layoutY="320.0" mnemonicParsing="false" text="Vendre" />
+      <Label fx:id="labelPricePotato" layoutX="133.0" layoutY="324.0" text="Prix: " />
+      <Button fx:id="btnReturn" layoutX="524.0" layoutY="362.0" mnemonicParsing="false" text="Retour" />
+   </children>
+</Pane>
