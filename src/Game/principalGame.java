@@ -36,9 +36,21 @@ public class principalGame extends Application {
     @FXML
     private ImageView imageViewTerrainLibre6;
     @FXML
+    private ImageView imageViewShopSeed;
+    @FXML
+    private ImageView imageViewShopSell;
+    @FXML
     private Label labelMoney;
     @FXML
     private Label labelRessource;
+    @FXML
+    private Label labelSeed;
+    @FXML
+    private Button btnExitToMenu;
+    @FXML
+    private Button btnSaveGame;
+    @FXML
+    private Button btnExitToWindow;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -46,36 +58,58 @@ public class principalGame extends Application {
         loader.setController(this);
         Parent root = loader.load();
 
-        Ressource ressource = new Ressource();
         Ressource.setMoney(5000);
         updateLabels();
 
         TerrainLibre[] terrainsLibres = {
                 new TerrainLibre(), new TerrainLibre(), new TerrainLibre(),
-                new TerrainLibre(), new TerrainLibre(), new TerrainLibre()
+                new TerrainLibre(), new TerrainLibre(), new TerrainLibre(),
+                new TerrainLibre()
         };
 
         ImageView[] imageViews = {
                 imageViewTerrainLibre, imageViewTerrainLibre1, imageViewTerrainLibre2,
-                imageViewTerrainLibre3, imageViewTerrainLibre4, imageViewTerrainLibre5
+                imageViewTerrainLibre3, imageViewTerrainLibre4, imageViewTerrainLibre5,
+                imageViewTerrainLibre6
         };
+
+        imageViewShopSeed.setOnMouseClicked(mouseEvent -> {
+            try {
+                new shopSeed(this).start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         for (ImageView imageView : imageViews) {
             imageView.setImage(new Image("./Image/champSell.png"));
         }
 
-        int[] costs = {100, 500, 1000, 1500, 2000, 2500};
+        int[] costs = {100, 500, 1000, 1500, 2000, 2500, 6000};
 
         for (int i = 0; i < imageViews.length; i++) {
-            final int index = i;
+            int index = i;
             imageViews[i].setOnMouseClicked(event ->
                     showModalFreeLand("Terrain libre", costs[index], terrainsLibres[index], imageViews[index])
             );
         }
 
+        btnExitToMenu.setOnAction(event -> {
+            primaryStage.close();
+            try {
+                new Menu.Menu().start(new Stage());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        btnExitToWindow.setOnAction(event -> {
+            primaryStage.close();
+        });
+
         updateLabels();
 
-        Scene scene = new Scene(root);
+        Scene scene = (new Scene(root, 570, 370));
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -98,7 +132,7 @@ public class principalGame extends Application {
                 Ressource.setMoney(Ressource.getMoney() - costLand);
                 updateLabels();
                 imageView.setImage(new Image("./Image/champs.png"));
-                imageView.setOnMouseClicked(e -> showModalSelectActivity(terrain, imageView));
+                imageView.setOnMouseClicked(e -> showModalSelectTerrain("Sélectionner un terrain", terrain, imageView));
             }
             modalStage.close();
         });
@@ -196,55 +230,12 @@ public class principalGame extends Application {
 
         imageView.setImage(new Image(getClass().getResource(resetImagePath).toExternalForm()));
 
-        imageView.setOnMouseClicked(e -> showModalSelectActivity(terrain, imageView));
+        imageView.setOnMouseClicked(e -> showModalSelectTerrain("Sélectionner un terrain", terrain, imageView));
     }
 
     private int generateRandomGain() {
         Random rand = new Random();
         return rand.nextInt(51) + 75;
-    }
-
-
-
-    private void showModalSelectActivity(Terrain terrain, ImageView imageView) {
-        Stage modalStage = new Stage();
-        modalStage.setTitle("Sélectionner une activité");
-        ComboBox<String> chooseTerrainActivity = new ComboBox<>();
-        chooseTerrainActivity.getItems().addAll("Farming Carrot", "Farming Potato", "Farming Wheat");
-
-        chooseTerrainActivity.setOnAction(event -> {
-            String selectedText = chooseTerrainActivity.getValue();
-            String[] imagePaths = new String[3];
-
-            switch (selectedText) {
-                case "Farming Carrot":
-                    imagePaths = new String[]{"/Image/champCarrote.png", "/Image/champCarrote2.png", "/Image/champCarrote3.png"};
-                    terrain.setTypeTerrain("Farming Carrot");
-                    break;
-                case "Farming Potato":
-                    imagePaths = new String[]{"/Image/champPotatoes.png", "/Image/champPotatoes2.png", "/Image/champPotatoes3.png"};
-                    terrain.setTypeTerrain("Farming Potato");
-                    break;
-                case "Farming Wheat":
-                    imagePaths = new String[]{"/Image/champBle.png", "/Image/champBle2.png", "/Image/champBle3.png"};
-                    terrain.setTypeTerrain("Farming Wheat");
-                    break;
-            }
-
-            if (getClass().getResource(imagePaths[0]) != null) {
-                imageView.setImage(new Image(getClass().getResource(imagePaths[0]).toExternalForm()));
-                animateImages(imageView, imagePaths, terrain);
-            } else {
-                System.err.println("Image not found: " + imagePaths[0]);
-            }
-
-            modalStage.close();
-        });
-
-        VBox root = new VBox(chooseTerrainActivity);
-        Scene scene = new Scene(root, 300, 200);
-        modalStage.setScene(scene);
-        modalStage.showAndWait();
     }
 
     private void showModalRessource(String title, int numberRessource, String ressourceName) {
@@ -267,12 +258,17 @@ public class principalGame extends Application {
         stage.showAndWait();
     }
 
-    private void updateLabels() {
+    public void updateLabels() {
         labelMoney.setText("Argent : " + Ressource.getMoney() + "€");
         labelRessource.setText("Ressources :\n" +
                 " " + Ressource.getWheat() + " blé\n" +
                 " " + Ressource.getCarrot() + " carotte\n" +
                 " " + Ressource.getPotatoes() + " patate\n"
+        );
+        labelSeed.setText("Graines :\n" +
+                " " + Production.getWheatSeed() + " graine de blé\n" +
+                " " + Production.getCarrotSeed() + " graine de carotte\n" +
+                " " + Production.getPotatoesSeed() + " graine de patate\n"
         );
     }
 

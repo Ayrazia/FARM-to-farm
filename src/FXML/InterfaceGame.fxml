@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,39 +15,49 @@
    <tabs>
       <Tab text="Game">
          <content>
-            <GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="617.0" style="-fx-background-color: white;">
+            <GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="604.0" style="-fx-background-color: white;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="157.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="2.0" prefWidth="9.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="141.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="0.0" prefWidth="33.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="28.0" minHeight="0.0" prefHeight="0.0" />
-                  <RowConstraints maxHeight="36.0" minHeight="8.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="36.0" minHeight="8.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="32.0" minHeight="0.0" prefHeight="0.0" />
+                  <RowConstraints maxHeight="68.0" minHeight="8.0" prefHeight="68.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="78.0" minHeight="8.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
                   <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
+                  <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+                  <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
                </rowConstraints>
                <children>
-                  <ImageView fx:id="imageViewTerrainLibre" fitHeight="47.0" fitWidth="63.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                  <ImageView fx:id="imageViewTerrainLibre1" fitHeight="47.0" fitWidth="63.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                  <ImageView fx:id="imageViewTerrainLibre2" fitHeight="47.0" fitWidth="63.0" GridPane.columnIndex="8" GridPane.rowIndex="4" />
-                  <ImageView fx:id="imageViewTerrainLibre3" fitHeight="34.0" fitWidth="60.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <ImageView fx:id="imageViewTerrainLibre4" fitHeight="34.0" fitWidth="60.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                  <ImageView fx:id="imageViewTerrainLibre5" fitHeight="34.0" fitWidth="60.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-                  <ImageView fx:id="imageViewTerrainLibre6" fitHeight="34.0" fitWidth="60.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ImageView fx:id="imageViewTerrainLibre" fitHeight="71.0" fitWidth="83.0" GridPane.rowIndex="1" />
+                  <ImageView fx:id="imageViewTerrainLibre1" fitHeight="62.0" fitWidth="85.0" GridPane.rowIndex="2" />
+                  <ImageView fx:id="imageViewTerrainLibre2" fitHeight="59.0" fitWidth="85.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ImageView fx:id="imageViewTerrainLibre3" fitHeight="72.0" fitWidth="86.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <ImageView fx:id="imageViewTerrainLibre4" fitHeight="62.0" fitWidth="85.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <ImageView fx:id="imageViewTerrainLibre5" fitHeight="63.0" fitWidth="82.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <ImageView fx:id="imageViewTerrainLibre6" fitHeight="64.0" fitWidth="85.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ImageView fx:id="imageViewShopSeed" fitHeight="93.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                     <image>
+                        <Image url="@../Image/ShopSeed.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="imageViewShopSell" fitHeight="93.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                     <image>
+                        <Image url="@../Image/ShopSell.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Vendeur de graine" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                  <Label prefHeight="22.0" prefWidth="154.0" text="Acheteur de ressource" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                </children>
             </GridPane>
          </content></Tab>
@@ -56,6 +67,7 @@
                <children>
                   <Label fx:id="labelMoney" layoutX="35.0" layoutY="32.0" text="Money : " />
                   <Label fx:id="labelRessource" layoutX="35.0" layoutY="120.0" text="Ressource : " />
+                  <Label fx:id="labelSeed" layoutX="393.0" layoutY="120.0" text="Graine :" />
                </children>
             </Pane>
          </content></Tab>
