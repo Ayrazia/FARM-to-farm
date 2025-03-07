@@ -39,11 +39,23 @@ public class principalGame extends Application {
     @FXML
     private ImageView imageViewShopSell;
     @FXML
+    private ImageView imageViewShopAnimals;
+    @FXML
     private Label labelMoney;
     @FXML
     private Label labelRessource;
     @FXML
     private Label labelSeed;
+    @FXML
+    private Label labelDepenses;
+    @FXML
+    private Label labelVentes;
+    @FXML
+    private Label labelVenteBleNbre;
+    @FXML
+    private Label labelVenteCarotteNbre;
+    @FXML
+    private Label labelVentePatateNbre;
     @FXML
     private Button btnExitToMenu;
     @FXML
@@ -52,23 +64,6 @@ public class principalGame extends Application {
     private Button btnExitToWindow;
 
     private List<Terrain> terrains;
-
-    public List<Terrain> getTerrains() {
-        return terrains;
-    }
-
-    public void addTerrain(Terrain terrain) {
-        terrains.add(terrain);
-    }
-
-    public Terrain getTerrainById(int id) {
-        for (Terrain terrain : terrains) {
-            if (terrain.getIdTerrain() == id) {
-                return terrain;
-            }
-        }
-        return null;
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -110,6 +105,14 @@ public class principalGame extends Application {
             }
         });
 
+        imageViewShopAnimals.setOnMouseClicked(mouseEvent -> {
+            try {
+                new shopAnimal(this).start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
         btnSaveGame.setOnMouseClicked(mouseEvent -> {
             gameSaveLoad.saveGame(
                     terrains,
@@ -119,11 +122,11 @@ public class principalGame extends Application {
                     Ressource.getPotatoes(),
                     Production.getWheatSeed(),
                     Production.getCarrotSeed(),
-                    Production.getPotatoesSeed()
+                    Production.getPotatoesSeed(),
+                    Ressource.getExpenses(),
+                    Ressource.getSales()
             );
         });
-
-
 
         for (ImageView imageView : imageViews) {
             imageView.setImage(new Image("./Image/champSell.png"));
@@ -174,6 +177,7 @@ public class principalGame extends Application {
                 showModalRessource("Impossible d'acheter ce terrain", Ressource.getMoney(), "€  Vous n'avez pas assez d'argent");
             } else {
                 Ressource.setMoney(Ressource.getMoney() - costLand);
+                Ressource.addExpense(costLand);
                 updateLabels();
                 imageView.setImage(new Image("./Image/champs.png"));
                 imageView.setOnMouseClicked(e -> showModalSelectTerrain("Sélectionner un terrain", terrain, imageView));
@@ -251,8 +255,6 @@ public class principalGame extends Application {
         modalStage.showAndWait();
     }
 
-
-
     private void animateImages(ImageView imageView, String[] imagePaths, Terrain terrain) {
         final int[] index = {0};
         imageView.setOnMouseClicked(null);
@@ -301,7 +303,6 @@ public class principalGame extends Application {
         imageView.setOnMouseClicked(e -> showModalSelectTerrain("Sélectionner un terrain", terrain, imageView));
     }
 
-
     private int generateRandomGain() {
         Random rand = new Random();
         return rand.nextInt(51) + 75;
@@ -339,6 +340,12 @@ public class principalGame extends Application {
                 " " + Production.getCarrotSeed() + " graine de carotte\n" +
                 " " + Production.getPotatoesSeed() + " graine de patate\n"
         );
+        labelDepenses.setText("Dépenses : " + Ressource.getExpenses() + "€");
+        labelVentes.setText("Ventes : " + Ressource.getSales() + "€");
+        labelVenteBleNbre.setText("Vente blé : " + Ressource.getWheatSales());
+        labelVenteCarotteNbre.setText("Vente carotte : " + Ressource.getCarrotSales());
+        labelVentePatateNbre.setText("Vente pomme de terre : " + Ressource.getPotatoesSales());
+        labelVenteBleNbre.setText("Vente blé : " + Ressource.getWheatSales());
     }
 
     public static void main(String[] args) {

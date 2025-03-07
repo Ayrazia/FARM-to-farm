@@ -18,8 +18,8 @@
             <GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="604.0" style="-fx-background-color: white;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="152.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="30.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="157.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="2.0" prefWidth="9.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="141.0" />
@@ -42,8 +42,8 @@
                   <ImageView fx:id="imageViewTerrainLibre" fitHeight="71.0" fitWidth="83.0" GridPane.rowIndex="1" />
                   <ImageView fx:id="imageViewTerrainLibre1" fitHeight="62.0" fitWidth="85.0" GridPane.rowIndex="2" />
                   <ImageView fx:id="imageViewTerrainLibre2" fitHeight="59.0" fitWidth="85.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <ImageView fx:id="imageViewTerrainLibre3" fitHeight="72.0" fitWidth="86.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <ImageView fx:id="imageViewTerrainLibre4" fitHeight="62.0" fitWidth="85.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <ImageView fx:id="imageViewTerrainLibre3" fitHeight="72.0" fitWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <ImageView fx:id="imageViewTerrainLibre4" fitHeight="62.0" fitWidth="85.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <ImageView fx:id="imageViewTerrainLibre5" fitHeight="63.0" fitWidth="82.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                   <ImageView fx:id="imageViewTerrainLibre6" fitHeight="64.0" fitWidth="85.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <ImageView fx:id="imageViewShopSeed" fitHeight="93.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="5">
@@ -58,6 +58,12 @@
                   </ImageView>
                   <Label text="Vendeur de graine" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="4" />
                   <Label prefHeight="22.0" prefWidth="154.0" text="Acheteur de ressource" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <ImageView fx:id="imageViewShopAnimals" fitHeight="84.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <image>
+                        <Image url="@../Image/shopAnimal.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="22.0" prefWidth="157.0" text="Acheteur d'animaux" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
          </content></Tab>
@@ -77,6 +83,9 @@
                   <Label fx:id="labelMoney" layoutX="35.0" layoutY="32.0" text="Money : " />
                   <Label fx:id="labelDepenses" layoutX="35.0" layoutY="120.0" text="Dépenses : " />
                   <Label fx:id="labelVentes" layoutX="393.0" layoutY="120.0" text="Ventes :" />
+                  <Label fx:id="labelVenteBleNbre" layoutX="45.0" layoutY="185.0" text="Vente blé :" />
+                  <Label fx:id="labelVenteCarotteNbre" layoutX="45.0" layoutY="227.0" text="Vente carotte : " />
+                  <Label fx:id="labelVentePatateNbre" layoutX="45.0" layoutY="268.0" text="Vente pomme de terre :" />
                </children>
             </Pane>
          </content>

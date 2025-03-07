@@ -12,8 +12,10 @@ public class gameState implements Serializable {
     private int wheatSeed;
     private int carrotSeed;
     private int potatoesSeed;
+    private int expenses;
+    private int sales;
 
-    public gameState(List<Terrain> terrains, int money, int wheat, int carrot, int potatoes, int wheatSeed, int carrotSeed, int potatoesSeed) {
+    public gameState(List<Terrain> terrains, int money, int wheat, int carrot, int potatoes, int wheatSeed, int carrotSeed, int potatoesSeed, int expenses, int sales) {
         this.terrains = terrains;
         this.money = money;
         this.wheat = wheat;
@@ -22,6 +24,8 @@ public class gameState implements Serializable {
         this.wheatSeed = wheatSeed;
         this.carrotSeed = carrotSeed;
         this.potatoesSeed = potatoesSeed;
+        this.expenses = expenses;
+        this.sales = sales;
     }
 
     public List<Terrain> getTerrains() {
@@ -86,5 +90,21 @@ public class gameState implements Serializable {
 
     public void setPotatoesSeed(int potatoesSeed) {
         this.potatoesSeed = potatoesSeed;
+    }
+
+    public int getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(int expenses) {
+        this.expenses = expenses;
+    }
+
+    public int getSales() {
+        return sales;
+    }
+
+    public void setSales(int sales) {
+        this.sales = sales;
     }
 }

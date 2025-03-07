@@ -56,6 +56,7 @@ public class shopSeed extends Application {
             int price = 10;
             int total = number * price;
             Ressource.setMoney(Ressource.getMoney() - total);
+            Ressource.addExpense(total);
             Production production = new Production();
             production.setWheatSeed(production.getWheatSeed() + number);
             mainGame.updateLabels();
@@ -66,6 +67,7 @@ public class shopSeed extends Application {
             int price = 20;
             int total = number * price;
             Ressource.setMoney(Ressource.getMoney() - total);
+            Ressource.addExpense(total);
             Production production = new Production();
             production.setCarrotSeed(production.getCarrotSeed() + number);
             mainGame.updateLabels();
@@ -76,6 +78,7 @@ public class shopSeed extends Application {
             int price = 30;
             int total = number * price;
             Ressource.setMoney(Ressource.getMoney() - total);
+            Ressource.addExpense(total);
             Production production = new Production();
             production.setPotatoesSeed(production.getPotatoesSeed() + number);
             mainGame.updateLabels();

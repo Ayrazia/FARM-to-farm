@@ -7,11 +7,13 @@ public class Terrain implements Serializable {
     private int idTerrain;
     private String nameTerrain;
     private String typeTerrain;
+    private String status;
 
     public Terrain(String typeTerrain) {
         this.idTerrain = counter++;
         this.nameTerrain = typeTerrain;
         this.typeTerrain = typeTerrain;
+        this.status = "TerrainLibre";
     }
 
     public int getIdTerrain() {
@@ -26,6 +28,10 @@ public class Terrain implements Serializable {
         return typeTerrain;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     public void setIdTerrain(int idTerrain) {
         this.idTerrain = idTerrain;
     }
@@ -36,5 +42,9 @@ public class Terrain implements Serializable {
 
     public void setTypeTerrain(String typeTerrain) {
         this.typeTerrain = typeTerrain;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

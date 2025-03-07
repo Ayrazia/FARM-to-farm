@@ -65,7 +65,11 @@ public class shopSell extends Application {
                 int total = number * price;
 
                 if (Ressource.getWheat() >= number) {
-                    showModalConfirmation("Vente Blé", "Confirmer la vente de " + number + " blé(s) pour " + total + " pièces.", number, price, "wheat");
+                    Ressource.setWheat(Ressource.getWheat() - number);
+                    Ressource.addWheatSale(number);
+                    Ressource.setMoney(Ressource.getMoney() + total);
+                    Ressource.addSale(total);
+                    mainGame.updateLabels();
                 } else {
                     showModalError("Pas assez de blé", "Vous n'avez pas assez de blé à vendre.");
                 }
@@ -82,7 +86,11 @@ public class shopSell extends Application {
                 int total = number * price;
 
                 if (Ressource.getCarrot() >= number) {
-                    showModalConfirmation("Vente Carottes", "Confirmer la vente de " + number + " carotte(s) pour " + total + " pièces.", number, price, "carrot");
+                    Ressource.setCarrot(Ressource.getCarrot() - number);
+                    Ressource.addCarrotSale(number);
+                    Ressource.setMoney(Ressource.getMoney() + total);
+                    Ressource.addSale(total);
+                    mainGame.updateLabels();
                 } else {
                     showModalError("Pas assez de carottes", "Vous n'avez pas assez de carottes à vendre.");
                 }
@@ -99,7 +107,11 @@ public class shopSell extends Application {
                 int total = number * price;
 
                 if (Ressource.getPotatoes() >= number) {
-                    showModalConfirmation("Vente Pommes de Terre", "Confirmer la vente de " + number + " pomme(s) de terre pour " + total + " pièces.", number, price, "potato");
+                    Ressource.setPotatoes(Ressource.getPotatoes() - number);
+                    Ressource.addPotatoesSale(number);
+                    Ressource.setMoney(Ressource.getMoney() + total);
+                    Ressource.addSale(total);
+                    mainGame.updateLabels();
                 } else {
                     showModalError("Pas assez de pommes de terre", "Vous n'avez pas assez de pommes de terre à vendre.");
                 }
@@ -132,34 +144,6 @@ public class shopSell extends Application {
         } catch (NumberFormatException e) {
             return false;
         }
-    }
-
-    private void showModalConfirmation(String title, String message, int number, int price, String resourceType) {
-        VBox confirmationBox = new VBox(10);
-        Label confirmationLabel = new Label(message);
-        Button confirmButton = new Button("Confirmer");
-        Button cancelButton = new Button("Annuler");
-
-        confirmButton.setOnAction(e -> {
-            if (resourceType.equals("wheat")) {
-                Ressource.setWheat(Ressource.getWheat() - number);
-            } else if (resourceType.equals("carrot")) {
-                Ressource.setCarrot(Ressource.getCarrot() - number);
-            } else if (resourceType.equals("potato")) {
-                Ressource.setPotatoes(Ressource.getPotatoes() - number);
-            }
-            Ressource.setMoney(Ressource.getMoney() + (number * price));
-            mainGame.updateLabels();
-            confirmationBox.getScene().getWindow().hide();
-        });
-
-        cancelButton.setOnAction(e -> confirmationBox.getScene().getWindow().hide());
-
-        confirmationBox.getChildren().addAll(confirmationLabel, confirmButton, cancelButton);
-        Stage confirmationStage = new Stage();
-        confirmationStage.setTitle(title);
-        confirmationStage.setScene(new Scene(confirmationBox, 300, 150));
-        confirmationStage.show();
     }
 
     private void showModalError(String title, String message) {

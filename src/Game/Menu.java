@@ -32,6 +32,7 @@ public class Menu extends Application {
         Parent root = loader.load();
 
         btnStartNewGame.setOnAction(event -> {
+            Ressource.setMoney(500);
             Platform.runLater(() -> {
                 try {
                     primaryStage.close();
