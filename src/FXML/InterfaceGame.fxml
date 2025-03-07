@@ -13,7 +13,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" side="BOTTOM" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <tabs>
-      <Tab text="Game">
+      <Tab text="Jeux">
          <content>
             <GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="604.0" style="-fx-background-color: white;">
                <columnConstraints>
@@ -65,19 +65,29 @@
          <content>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="labelMoney" layoutX="35.0" layoutY="32.0" text="Money : " />
-                  <Label fx:id="labelRessource" layoutX="35.0" layoutY="120.0" text="Ressource : " />
-                  <Label fx:id="labelSeed" layoutX="393.0" layoutY="120.0" text="Graine :" />
+                  <Label fx:id="labelRessource" layoutX="35.0" layoutY="41.0" text="Ressource : " />
+                  <Label fx:id="labelSeed" layoutX="336.0" layoutY="41.0" text="Graine :" />
                </children>
             </Pane>
          </content></Tab>
-      <Tab text="Files">
+      <Tab text="Infos financiers">
          <content>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnSaveGame" layoutX="255.0" layoutY="96.0" mnemonicParsing="false" text="Save game" />
-                  <Button fx:id="btnExitToMenu" layoutX="249.0" layoutY="161.0" mnemonicParsing="false" text="Exit to menu" />
-                  <Button fx:id="btnExitToWindow" layoutX="243.0" layoutY="229.0" mnemonicParsing="false" text="Exit to window" />
+                  <Label fx:id="labelMoney" layoutX="35.0" layoutY="32.0" text="Money : " />
+                  <Label fx:id="labelDepenses" layoutX="35.0" layoutY="120.0" text="Dépenses : " />
+                  <Label fx:id="labelVentes" layoutX="393.0" layoutY="120.0" text="Ventes :" />
+               </children>
+            </Pane>
+         </content>
+      </Tab>
+      <Tab text="Fichiers">
+         <content>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnSaveGame" layoutX="253.0" layoutY="97.0" mnemonicParsing="false" text="Sauvgarder" />
+                  <Button fx:id="btnExitToMenu" layoutX="226.0" layoutY="161.0" mnemonicParsing="false" text="Retour vers le menu" />
+                  <Button fx:id="btnExitToWindow" layoutX="225.0" layoutY="230.0" mnemonicParsing="false" text="Retour sur le bureau" />
                </children>
             </Pane>
          </content>

@@ -8,14 +8,12 @@ public class Terrain implements Serializable {
     private String nameTerrain;
     private String typeTerrain;
 
-    // Constructeur pour initialiser le terrain avec son type
     public Terrain(String typeTerrain) {
         this.idTerrain = counter++;
         this.nameTerrain = typeTerrain;
         this.typeTerrain = typeTerrain;
     }
 
-    // Getters et Setters
     public int getIdTerrain() {
         return idTerrain;
     }

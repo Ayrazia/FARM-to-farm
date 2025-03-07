@@ -24,7 +24,6 @@ public class gameState implements Serializable {
         this.potatoesSeed = potatoesSeed;
     }
 
-    // Getters and setters for all attributes
     public List<Terrain> getTerrains() {
         return terrains;
     }

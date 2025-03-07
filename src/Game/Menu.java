@@ -45,7 +45,6 @@ public class Menu extends Application {
 
         btnExit.setOnAction(event -> primaryStage.close());
 
-        // Charge le jeu à partir de la sauvegarde
         btnLoadGame.setOnAction(event -> {
             loadGame();
         });
@@ -55,13 +54,10 @@ public class Menu extends Application {
         primaryStage.show();
     }
 
-    // La méthode loadGame qui charge les données et commence le jeu
     private void loadGame() {
         try {
-            // Appel à la méthode de chargement des données de jeu
             gameSaveLoad.loadGame();
 
-            // Cette partie s'assure que l'ancienne scène est fermée et ouvre une nouvelle scène avec le jeu
             Platform.runLater(() -> {
                 try {
                     Stage currentStage = (Stage) btnLoadGame.getScene().getWindow();

@@ -231,16 +231,14 @@ public class principalGame extends Application {
             }
 
             if (hasSeeds) {
-                // Planter la culture si on a des graines
                 if (getClass().getResource(imagePaths[0]) != null) {
                     imageView.setImage(new Image(getClass().getResource(imagePaths[0]).toExternalForm()));
                     animateImages(imageView, imagePaths, terrain);
                 } else {
                     System.err.println("Image not found: " + imagePaths[0]);
                 }
-                updateLabels(); // 🔴 Met à jour les labels ici !
+                updateLabels();
             } else {
-                // Afficher un message d'erreur si on n'a pas de graines
                 showModalRessource("Aucune graine disponible", 0, "Vous n'avez plus de graines de " + selectedText + " !");
             }
 
@@ -294,7 +292,7 @@ public class principalGame extends Application {
                 return;
         }
 
-        updateLabels(); // 🔴 Met à jour les labels après la récolte
+        updateLabels();
 
         showModalRessource("Récolte terminée", gain, type + " récolté!");
 
